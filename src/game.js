@@ -107,7 +107,7 @@ function countLiveNeighbors(row, col, currentGeneration) {
 	return liveNeighborCount;
 }
 
-function run(currentGeneration) {
+export function run(currentGeneration) {
 	let nextGeneration = initNextGeneration(currentGeneration);
 
 	for (let row in currentGeneration) {
