@@ -1,7 +1,7 @@
 const dead = 0;
 const alive = 1;
 
-// Any live cell with fewer than two live neighbors dies (underpopulation)
+// Any live cell with fewer than two live neighbors dies (underpopulated)
 function isUnderpopulated(liveNeighborCount) {
 	return liveNeighborCount < 2;
 }
