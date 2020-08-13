@@ -130,7 +130,7 @@ export function run(currentGeneration) {
 						nextGeneration[row][col] = alive;
 						continue;
 					}
-					
+
 					break;
 				default:
 					if (canReproduce(liveNeighborCount)) {
@@ -142,12 +142,3 @@ export function run(currentGeneration) {
 
 	return nextGeneration;
 }
-
-let nextGeneration = run([
-	[0, 1, 0, 0],
-	[1, 1, 0, 0],
-	[0, 0, 0, 0],
-	[0, 0, 0, 0],
-]);
-
-console.log(nextGeneration);
