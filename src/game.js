@@ -37,6 +37,17 @@ function initNextGeneration(currentGeneration) {
 	return nextGeneration;
 }
 
+function checkTopLeftNeighbor(row, col, currentGeneration){
+  let x = row - 1;
+  let y = col - 1;
+  
+	if (x >= 0 && y >= 0) {
+		return currentGeneration[x][y];
+  }
+  
+  return dead
+}
+
 function checkTopNeighbor(row, col, currentGeneration) {
   let x = row - 1;
   let y = col;
@@ -45,21 +56,10 @@ function checkTopNeighbor(row, col, currentGeneration) {
 		return currentGeneration[x][y];
   }
   
-  return 0;
+  return dead;
 }
 
-function checkUpperLeftNeighbor(row, col, currentGeneration){
-  let x = row - 1;
-  let y = col - 1;
-  
-	if (x >= 0 && y >= 0) {
-		return currentGeneration[x][y];
-  }
-  
-  return 0
-}
-
-function checkUpperRightNeighbor(row, col, colCount, currentGeneration){
+function checkTopRightNeighbor(row, col, colCount, currentGeneration){
   let x = row - 1;
   let y = col + 1;
   
@@ -67,7 +67,7 @@ function checkUpperRightNeighbor(row, col, colCount, currentGeneration){
 		return currentGeneration[x][y];
   }
   
-  return 0;
+  return dead;
 }
 
 function checkLeftNeighbor(row, col, currentGeneration){
@@ -78,7 +78,7 @@ function checkLeftNeighbor(row, col, currentGeneration){
 		return currentGeneration[x][y];
   }
   
-  return 0
+  return dead
 }
 
 function checkRightNeighbor(row, col, colCount, currentGeneration){
@@ -89,7 +89,7 @@ function checkRightNeighbor(row, col, colCount, currentGeneration){
 		return currentGeneration[x][y];
   }
   
-  return 0
+  return dead
 }
 
 function checkBottomLeftNeighbor(row, col, rowCount, currentGeneration) {
@@ -100,18 +100,7 @@ function checkBottomLeftNeighbor(row, col, rowCount, currentGeneration) {
 		return currentGeneration[x][y];
   }
   
-  return 0;
-}
-
-function checkBottomRightNeighbor(row, col, rowCount, colCount, currentGeneration){
-  let x = row + 1;
-  let y = col + 1;
-  
-	if (x < rowCount && y < colCount) {
-		return currentGeneration[x][y];
-  }
-  
-  return 0
+  return dead;
 }
 
 function checkBottomNeighbor(row, col, rowCount, currentGeneration){
@@ -122,7 +111,18 @@ function checkBottomNeighbor(row, col, rowCount, currentGeneration){
 		return currentGeneration[x][y];
   }
   
-  return 0;
+  return dead;
+}
+
+function checkBottomRightNeighbor(row, col, rowCount, colCount, currentGeneration){
+  let x = row + 1;
+  let y = col + 1;
+  
+	if (x < rowCount && y < colCount) {
+		return currentGeneration[x][y];
+  }
+  
+  return dead
 }
 
 function countLiveNeighbors(row, col, currentGeneration) {
@@ -133,14 +133,14 @@ function countLiveNeighbors(row, col, currentGeneration) {
 	col = Number(col);
 
 	let liveNeighborCount = 0;
+	liveNeighborCount += checkTopLeftNeighbor(row, col, currentGeneration);
 	liveNeighborCount += checkTopNeighbor(row, col, currentGeneration);
-	liveNeighborCount += checkUpperLeftNeighbor(row, col, currentGeneration);
-  liveNeighborCount += checkUpperRightNeighbor(row, col, colCount, currentGeneration);
+  liveNeighborCount += checkTopRightNeighbor(row, col, colCount, currentGeneration);
   liveNeighborCount += checkLeftNeighbor(row, col, currentGeneration);
 	liveNeighborCount += checkRightNeighbor(row, col, colCount, currentGeneration);
 	liveNeighborCount += checkBottomLeftNeighbor(row, col, rowCount, currentGeneration);
-	liveNeighborCount += checkBottomRightNeighbor(row, col, rowCount, colCount, currentGeneration);
 	liveNeighborCount += checkBottomNeighbor(row, col, rowCount, currentGeneration);
+	liveNeighborCount += checkBottomRightNeighbor(row, col, rowCount, colCount, currentGeneration);
 
 	return liveNeighborCount;
 }
