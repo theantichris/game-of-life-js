@@ -1,25 +1,7 @@
+import * as rules from './rules.js'
+
 const dead = 0;
 const alive = 1;
-
-// Any live cell with fewer than two live neighbors dies (underpopulated)
-function isUnderpopulated(liveNeighborCount) {
-	return liveNeighborCount < 2;
-}
-
-// Any live cell with more than three live neighbors dies (overpopulation)
-function isOverpopulated(liveNeighborCount) {
-	return liveNeighborCount > 3;
-}
-
-// Any live cell with two or three live neighbors lives on to the next generation
-function canLiveOn(liveNeighborCount) {
-	return liveNeighborCount === 2 || liveNeighborCount === 3;
-}
-
-// Any dead cell with exactly three live neighbors becomes a live cell (reproduction)
-function canReproduce(liveNeighborCount) {
-	return liveNeighborCount === 3;
-}
 
 function initNextGeneration(currentGeneration) {
 	let rowCount = currentGeneration.length;
@@ -154,24 +136,24 @@ export function run(currentGeneration) {
 
 			switch (currentGeneration[row][col]) {
 				case alive:
-					if (isUnderpopulated(liveNeighborCount)) {
+					if (rules.isUnderpopulated(liveNeighborCount)) {
 						nextGeneration[row][col] = dead;
 						continue;
 					}
 					
-					if (isOverpopulated(liveNeighborCount)) {
+					if (rules.isOverpopulated(liveNeighborCount)) {
 						nextGeneration[row][col] = dead;
 						continue;
 					}
 					
-					if (canLiveOn(liveNeighborCount)) {
+					if (rules.canLiveOn(liveNeighborCount)) {
 						nextGeneration[row][col] = alive;
 						continue;
 					}
 
 					break;
 				default:
-					if (canReproduce(liveNeighborCount)) {
+					if (rules.canReproduce(liveNeighborCount)) {
 						nextGeneration[row][col] = alive;
 					}
 			}
