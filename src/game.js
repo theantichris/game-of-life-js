@@ -37,6 +37,94 @@ function initNextGeneration(currentGeneration) {
 	return nextGeneration;
 }
 
+function checkTopNeighbor(row, col, currentGeneration) {
+  let x = row - 1;
+  let y = col;
+
+	if (x >= 0) {
+		return currentGeneration[x][y];
+  }
+  
+  return 0;
+}
+
+function checkUpperLeftNeighbor(row, col, currentGeneration){
+  let x = row - 1;
+  let y = col - 1;
+  
+	if (x >= 0 && y >= 0) {
+		return currentGeneration[x][y];
+  }
+  
+  return 0
+}
+
+function checkUpperRightNeighbor(row, col, colCount, currentGeneration){
+  let x = row - 1;
+  let y = col + 1;
+  
+	if (x >= 0 && y < colCount) {
+		return currentGeneration[x][y];
+  }
+  
+  return 0;
+}
+
+function checkLeftNeighbor(row, col, currentGeneration){
+  let x = row;
+  let y = col - 1;
+  
+	if (y >= 0) {
+		return currentGeneration[x][y];
+  }
+  
+  return 0
+}
+
+function checkRightNeighbor(row, col, colCount, currentGeneration){
+  let x = row;
+  let y = col + 1;
+  
+	if (y < colCount) {
+		return currentGeneration[x][y];
+  }
+  
+  return 0
+}
+
+function checkBottomLeftNeighbor(row, col, rowCount, currentGeneration) {
+  let x = row + 1;
+  let y = col - 1;
+  
+	if (x < rowCount && y >= 0) {
+		return currentGeneration[x][y];
+  }
+  
+  return 0;
+}
+
+function checkBottomRightNeighbor(row, col, rowCount, colCount, currentGeneration){
+  let x = row + 1;
+  let y = col + 1;
+  
+	if (x < rowCount && y < colCount) {
+		return currentGeneration[x][y];
+  }
+  
+  return 0
+}
+
+function checkBottomNeighbor(row, col, rowCount, currentGeneration){
+  let x = row + 1;
+  let y = col;
+  
+	if (x + 1 < rowCount) {
+		return currentGeneration[x][y];
+  }
+  
+  return 0;
+}
+
 function countLiveNeighbors(row, col, currentGeneration) {
 	let rowCount = currentGeneration.length;
 	let colCount = currentGeneration[0].length;
@@ -45,64 +133,14 @@ function countLiveNeighbors(row, col, currentGeneration) {
 	col = Number(col);
 
 	let liveNeighborCount = 0;
-	let x = 0;
-	let y = 0;
-
-	// top neighbor
-	x = row - 1;
-	y = col;
-	if (x >= 0) {
-		liveNeighborCount += currentGeneration[x][y];
-	}
-
-	// upper left neighbor
-	x = row - 1;
-	y = col - 1;
-	if (x >= 0 && y >= 0) {
-		liveNeighborCount += currentGeneration[x][y];
-	}
-
-	// upper right
-	x = row - 1;
-	y = col + 1;
-	if (x >= 0 && y < colCount) {
-		liveNeighborCount += currentGeneration[x][y];
-	}
-
-	// left neighbor
-	x = row;
-	y = col - 1;
-	if (y >= 0) {
-		liveNeighborCount += currentGeneration[x][y];
-	}
-
-	// right neighbor
-	x = row;
-	y = col + 1;
-	if (y < colCount) {
-		liveNeighborCount += currentGeneration[x][y];
-	}
-
-	// bottom left neighbor
-	x = row + 1;
-	y = col - 1;
-	if (x < rowCount && y >= 0) {
-		liveNeighborCount += currentGeneration[x][y];
-	}
-
-	// bottom right neighbor
-	x = row + 1;
-	y = col + 1;
-	if (x < rowCount && y < colCount) {
-		liveNeighborCount += currentGeneration[x][y];
-	}
-
-	// bottom neighbor
-	x = row + 1;
-	y = col;
-	if (x + 1 < rowCount) {
-		liveNeighborCount += currentGeneration[x][y];
-	}
+	liveNeighborCount += checkTopNeighbor(row, col, currentGeneration);
+	liveNeighborCount += checkUpperLeftNeighbor(row, col, currentGeneration);
+  liveNeighborCount += checkUpperRightNeighbor(row, col, colCount, currentGeneration);
+  liveNeighborCount += checkLeftNeighbor(row, col, currentGeneration);
+	liveNeighborCount += checkRightNeighbor(row, col, colCount, currentGeneration);
+	liveNeighborCount += checkBottomLeftNeighbor(row, col, rowCount, currentGeneration);
+	liveNeighborCount += checkBottomRightNeighbor(row, col, rowCount, colCount, currentGeneration);
+	liveNeighborCount += checkBottomNeighbor(row, col, rowCount, currentGeneration);
 
 	return liveNeighborCount;
 }
