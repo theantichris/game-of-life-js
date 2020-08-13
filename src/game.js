@@ -22,14 +22,14 @@ function canReproduce(liveNeighborCount) {
 }
 
 function initNextGeneration(currentGeneration) {
-	let rows = currentGeneration.length;
-	let cols = currentGeneration[0].length;
+	let rowCount = currentGeneration.length;
+	let colCount = currentGeneration[0].length;
 
 	let nextGeneration = [];
-	for (let i = 0; i < rows; i++) {
+	for (let i = 0; i < rowCount; i++) {
 		nextGeneration[i] = [];
 
-		for (let j = 0; j < cols; j++) {
+		for (let j = 0; j < colCount; j++) {
 			nextGeneration[i][j] = dead;
 		}
 	}
@@ -38,8 +38,8 @@ function initNextGeneration(currentGeneration) {
 }
 
 function countLiveNeighbors(row, col, currentGeneration) {
-	let rows = currentGeneration.length;
-	let cols = currentGeneration[0].length;
+	let rowCount = currentGeneration.length;
+	let colCount = currentGeneration[0].length;
 
 	row = Number(row);
 	col = Number(col);
@@ -65,7 +65,7 @@ function countLiveNeighbors(row, col, currentGeneration) {
 	// upper right
 	x = row - 1;
 	y = col + 1;
-	if (x >= 0 && y < cols) {
+	if (x >= 0 && y < colCount) {
 		liveNeighborCount += currentGeneration[x][y];
 	}
 
@@ -79,28 +79,28 @@ function countLiveNeighbors(row, col, currentGeneration) {
 	// right neighbor
 	x = row;
 	y = col + 1;
-	if (y < cols) {
+	if (y < colCount) {
 		liveNeighborCount += currentGeneration[x][y];
 	}
 
 	// bottom left neighbor
 	x = row + 1;
 	y = col - 1;
-	if (x < rows && y >= 0) {
+	if (x < rowCount && y >= 0) {
 		liveNeighborCount += currentGeneration[x][y];
 	}
 
 	// bottom right neighbor
 	x = row + 1;
 	y = col + 1;
-	if (x < rows && y < cols) {
+	if (x < rowCount && y < colCount) {
 		liveNeighborCount += currentGeneration[x][y];
 	}
 
 	// bottom neighbor
 	x = row + 1;
 	y = col;
-	if (x + 1 < rows) {
+	if (x + 1 < rowCount) {
 		liveNeighborCount += currentGeneration[x][y];
 	}
 
