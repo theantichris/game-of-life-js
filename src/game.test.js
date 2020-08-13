@@ -62,7 +62,7 @@ describe('game of life', () => {
     })
 
     it('blinks', () => {
-        let phase1 = [
+        let period1 = [
             [0, 0, 0, 0, 0],
             [0, 0, 1, 0, 0],
             [0, 0, 1, 0, 0],
@@ -70,7 +70,7 @@ describe('game of life', () => {
             [0, 0, 0, 0, 0],
         ]
 
-        let phase2 = [
+        let period2 = [
             [0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0],
             [0, 1, 1, 1, 0],
@@ -78,12 +78,40 @@ describe('game of life', () => {
             [0, 0, 0, 0, 0],
         ]
 
-        let actual = run(phase1)
+        let actual = run(period1)
 
-        expect(actual).toEqual(phase2)
+        expect(actual).toEqual(period2)
 
-        actual = run(phase2)
+        actual = run(period2)
 
-        expect(actual).toEqual(phase1)
+        expect(actual).toEqual(period1)
+    })
+
+    it('toads', () => {
+        let period1 = [
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 1, 1, 1, 0],
+            [0, 1, 1, 1, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+        ]
+
+        let period2 = [
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 1, 0, 0],
+            [0, 1, 0, 0, 1, 0],
+            [0, 1, 0, 0, 1, 0],
+            [0, 0, 1, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+        ]
+
+        let actual = run(period1)
+
+        expect(actual).toEqual(period2)
+
+        actual = run(period2)
+
+        expect(actual).toEqual(period1)
     })
 })
