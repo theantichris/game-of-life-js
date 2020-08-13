@@ -60,4 +60,30 @@ describe('game of life', () => {
 
         expect(actual).toEqual(expected)
     })
+
+    it('blinks', () => {
+        let phase1 = [
+            [0, 0, 0, 0, 0],
+            [0, 0, 1, 0, 0],
+            [0, 0, 1, 0, 0],
+            [0, 0, 1, 0, 0],
+            [0, 0, 0, 0, 0],
+        ]
+
+        let phase2 = [
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 1, 1, 1, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+        ]
+
+        let actual = run(phase1)
+
+        expect(actual).toEqual(phase2)
+
+        actual = run(phase2)
+
+        expect(actual).toEqual(phase1)
+    })
 })
