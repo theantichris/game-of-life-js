@@ -118,11 +118,19 @@ export function run(currentGeneration) {
 				case alive:
 					if (isUnderpopulated(liveNeighborCount)) {
 						nextGeneration[row][col] = dead;
-					} else if (isOverpopulated(liveNeighborCount)) {
-						nextGeneration[row][col] = dead;
-					} else if (canLiveOn(liveNeighborCount)) {
-						nextGeneration[row][col] = alive;
+						continue;
 					}
+					
+					if (isOverpopulated(liveNeighborCount)) {
+						nextGeneration[row][col] = dead;
+						continue;
+					}
+					
+					if (canLiveOn(liveNeighborCount)) {
+						nextGeneration[row][col] = alive;
+						continue;
+					}
+					
 					break;
 				default:
 					if (canReproduce(liveNeighborCount)) {
