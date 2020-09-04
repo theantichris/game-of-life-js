@@ -30,8 +30,8 @@ function countLiveNeighbors(row, col, currentGeneration) {
 	let liveNeighborCount = 0;
 	liveNeighborCount += check.topLeftNeighbor(row, col, currentGeneration);
 	liveNeighborCount += check.topNeighbor(row, col, currentGeneration);
-  liveNeighborCount += check.topRightNeighbor(row, col, colCount, currentGeneration);
-  liveNeighborCount += check.leftNeighbor(row, col, currentGeneration);
+  	liveNeighborCount += check.topRightNeighbor(row, col, colCount, currentGeneration);
+  	liveNeighborCount += check.leftNeighbor(row, col, currentGeneration);
 	liveNeighborCount += check.rightNeighbor(row, col, colCount, currentGeneration);
 	liveNeighborCount += check.bottomLeftNeighbor(row, col, rowCount, currentGeneration);
 	liveNeighborCount += check.bottomNeighbor(row, col, rowCount, currentGeneration);
